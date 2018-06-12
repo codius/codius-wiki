@@ -27,6 +27,7 @@ cd codiusd.wiki || exit
 ls -la
 
 touch testfile
+ssh-add -l
 
 git add -A
 git commit -m "chore: circleci wiki"
