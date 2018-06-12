@@ -29,4 +29,5 @@ workflows:
           #   - shellcheck
           filters:
             branches:
-              only: master
+              only: 
+                - master
