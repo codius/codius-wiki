@@ -17,17 +17,16 @@ jobs:
       - checkout
       - run:
           name: Deploy Wiki 
-          command: echo "hello"
+          command: ./scripts/deploy-wiki.sh
 
 workflows:
   version: 2
   workflow:
     jobs:
-      # - shellcheck
+      - shellcheck
       - build-job:
-          # requires:
-          #   - shellcheck
+          requires:
+            - shellcheck
           filters:
             branches:
-              only: 
-                - master
+              only: master
