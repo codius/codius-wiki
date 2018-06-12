@@ -16,7 +16,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "$CODIUSD_FINGREPRINT, $WIKI_FINGERPRINT"
+            - "$WIKI_FINGERPRINT"
       - checkout
       - run:
           name: Deploy Wiki 
