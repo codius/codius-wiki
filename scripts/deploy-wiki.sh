@@ -24,6 +24,10 @@ cp -a "../project/." ./codiusd.wiki
 
 cd codiusd.wiki || exit
 
+ls -la
+
+touch testfile
+
 git add -A
 git commit -m "chore: circleci wiki"
 
