@@ -10,8 +10,8 @@ set -e
 pwd
 ls
 # make a directory to put the gp-pages branch
-mkdir codius-wiki-branch
-cd codius-wiki-branch || exit
+mkdir ../codius-wiki-branch
+cd ../codius-wiki-branch || exit
 # now lets setup a new repo so we can update the gh-pages branch
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
@@ -33,7 +33,7 @@ fi
 # copy over or recompile the new site
 pwd
 ls
-cp -a "../codius-wiki/." .
+cp -a "../project/." .
 
 # stage any changes and new files
 git add -A
