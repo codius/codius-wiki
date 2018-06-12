@@ -16,7 +16,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "$WIKI_FINGERPRINT"
+            - "e0:ba:8f:46:d3:a9:4a:fc:8e:c1:14:47:e8:ee:29:b7"
       - checkout
       - run:
           name: Deploy Wiki 
