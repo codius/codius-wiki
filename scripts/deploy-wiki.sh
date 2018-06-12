@@ -16,8 +16,6 @@ cd ../codius-wiki-branch || exit
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 git init
-git remote add origin "git@github.com:codius/codiusd.wiki.git"
-
 
 # switch into the the codius-wiki branch
 if git rev-parse --verify origin/codius-wiki > /dev/null 2>&1
@@ -34,12 +32,13 @@ fi
 pwd
 ls
 cp -a "../project/." .
-
+git remote remove origin
+echo "remote removed"
+git remote add origin "git@github.com:codius/codiusd.wiki.git"
+echo "added new remote"
 # stage any changes and new files
 git add -A
 # now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
-echo "$CODIUSD_FINGERPRINT"
-ssh-add -l
 git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
 # and push, but send any output to /dev/null to hide anything sensitive
 git push --force --quiet origin master
