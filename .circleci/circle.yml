@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  shellcheck:
+    docker:
+      - image: nlknguyen/alpine-shellcheck:v0.4.6
+    steps:
+      - checkout
+      - run:
+          name: Check Scripts
+          command: |
+            find . -type f -name '*.sh' | wc -l
+            find . -type f -name '*.sh' | xargs shellcheck --external-sources
+  build-job:
+    steps:
+      - run:
+        name: Deploy Wiki 
+        command: ./scripts/deploy-wiki.sh
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - shellcheck
+      - build-job:
+          requires:
+            - shellcheck
+          filters:
+            branches:
+              only: master
