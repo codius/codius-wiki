@@ -15,37 +15,38 @@ cd ../codius-wiki-branch || exit
 # now lets setup a new repo so we can update the gh-pages branch
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
-git init
-git remote add origin "git@github.com:codius/codiusd.wiki.git"
+# git init
+# git remote add origin "git@github.com:codius/codiusd.wiki.git"
 
+git clone git@github.com:codius/codiusd.wiki.git
 
-# switch into the the codius-wiki branch
-if git rev-parse --verify origin/codius-wiki > /dev/null 2>&1
-then
-    git checkout codius-wiki
-    # delete any old site as we are going to replace it
-    # Note: this explodes if there aren't any, so moving it here for now
-    git rm -rf .
-else
-    git checkout --orphan codius-wiki
-fi
+# # switch into the the codius-wiki branch
+# if git rev-parse --verify origin/codius-wiki > /dev/null 2>&1
+# then
+#     git checkout codius-wiki
+#     # delete any old site as we are going to replace it
+#     # Note: this explodes if there aren't any, so moving it here for now
+#     git rm -rf .
+# else
+#     git checkout --orphan codius-wiki
+# fi
 
 # copy over or recompile the new site
-pwd
-ls
-cp -a "../project/." .
+# pwd
+# ls
+# cp -a "../project/." .
 
-# stage any changes and new files
-git add -A
-# now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
-echo "$CODIUSD_FINGERPRINT"
-ssh-add -l
-git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
-# and push, but send any output to /dev/null to hide anything sensitive
-git push --force --quiet origin master
-# go back to where we started and remove the gh-pages git repo we made and used
-# for deployment
-cd ..
-rm -rf codius-wiki-branch
+# # stage any changes and new files
+# git add -A
+# # now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
+# echo "$CODIUSD_FINGERPRINT"
+# ssh-add -l
+# git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
+# # and push, but send any output to /dev/null to hide anything sensitive
+# git push --force --quiet origin master
+# # go back to where we started and remove the gh-pages git repo we made and used
+# # for deployment
+# cd ..
+# rm -rf codius-wiki-branch
 
-echo "Finished Deployment!"
+# echo "Finished Deployment!"
