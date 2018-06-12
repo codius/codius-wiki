@@ -16,8 +16,7 @@ cd ../codius-wiki-branch || exit
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 git init
-git remote add --fetch origin "git@github.com:codius/codiusd.wiki.git"
-git remote add --push origin "git@github.com:codius/codiusd.wiki.git"
+git remote add origin "git@github.com:codius/codiusd.wiki.git"
 
 
 # switch into the the codius-wiki branch
