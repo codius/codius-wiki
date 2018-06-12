@@ -20,6 +20,15 @@ git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
 git clone git@github.com:codius/codiusd.wiki.git
 
+cp -a "../project/." ./codiusd.wiki
+
+cd codiusd.wiki || exit
+
+git add -a
+git commit -m "chore: circleci wiki"
+
+git push -u origin master
+
 # # switch into the the codius-wiki branch
 # if git rev-parse --verify origin/codius-wiki > /dev/null 2>&1
 # then
