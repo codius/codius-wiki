@@ -12,9 +12,10 @@ jobs:
             find . -type f -name '*.sh' | xargs shellcheck --external-sources
   build-job:
     steps:
+      - checkout
       - run:
-        name: Deploy Wiki 
-        command: ./scripts/deploy-wiki.sh
+          name: Deploy Wiki 
+          command: echo "hello"
 
 workflows:
   version: 2
