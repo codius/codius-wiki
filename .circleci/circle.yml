@@ -12,7 +12,7 @@ jobs:
             find . -type f -name '*.sh' | xargs shellcheck --external-sources
   build-job:
     docker:
-      - image: 
+      - image: circleci/node:10 
     steps:
       - checkout
       - run:
