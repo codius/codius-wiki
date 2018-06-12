@@ -8,7 +8,7 @@ set -e
 
 # show where we are on the machine
 pwd
-
+ls
 # make a directory to put the gp-pages branch
 mkdir codius-wiki-branch
 cd codius-wiki-branch || exit
@@ -31,6 +31,8 @@ else
 fi
 
 # copy over or recompile the new site
+pwd
+ls
 cp -a "../codius-wiki/." .
 
 # stage any changes and new files
