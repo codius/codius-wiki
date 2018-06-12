@@ -39,6 +39,7 @@ cp -a "../project/." .
 git add -A
 # now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
 echo "$CODIUSD_FINGERPRINT"
+ssh-add -l
 git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
 # and push, but send any output to /dev/null to hide anything sensitive
 git push --force --quiet origin master
