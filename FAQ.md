@@ -10,7 +10,7 @@ New additions should follow this format:
 
 ### Describe the issue in a header
 ```
-Add brief log output if it it is relevant.
+Add brief log output if it is relevant.
 ```
 * Detail each step...
 * In its own bullet point.
