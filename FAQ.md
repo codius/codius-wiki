@@ -41,10 +41,8 @@ ilp-plugin-xrp-asym-client Error creating the payment channel: tecUNFUNDED One o
 * Enter the command `hyperctl list`
 ```
 [root@host1 ~]# hyperctl list
-POD ID              POD Name            VM name             Status
-
-< I have no pods running but details would appear here. Will update this FAQ once I have a better example >
-[root@host1 ~]#
+POD ID                                                 POD Name                                               VM name             Status
+lg6gjhhh2b3if2tzpbms6cr3hdmh7dixa2v4an6pz4tdxdmqtjpa   lg6gjhhh2b3if2tzpbms6cr3hdmh7dixa2v4an6pz4tdxdmqtjpa   vm-IgCwzBdZfd       running
 ```
 
 ### Can I run multiple instances of Codius from one wallet?
