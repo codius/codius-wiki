@@ -45,3 +45,10 @@ Yes!
 
 More info and actual documentation found below: 
 * https://github.com/interledgerjs/moneyd#multiple-instances
+
+### What decides if a contract (pod) is uploaded to my host? Is it random?
+* If `--host` is specified during upload, a specific host can be chosen;
+* If `--host` is left out / blank, a random host is chosen from the list of peers.
+```
+codius upload /tmp/example-manifest.json --host https://host1.codius.live --duration 200
+```
