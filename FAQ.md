@@ -42,5 +42,6 @@ POD ID              POD Name            VM name             Status
 ### Can I run multiple instances of Codius from one wallet?
 Yes! 
 * Add a unique name to your `.moneyd.json` in the `uplinks.xrp.options.name` for each instance.
+
 More info and actual documentation found below: 
 * https://github.com/interledgerjs/moneyd#multiple-instances
