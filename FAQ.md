@@ -16,12 +16,47 @@ Add brief log output if it is relevant.
 * In its own bullet point.
 * Try to include pertinent but brief log messages in the header to help others find the issue.
 
+### Should I run the setup as root user?
+Yes!
+* Log in as root for entire setup process (hyper/moneyd/codiusd).
+* Failure to do so will cause errors like the following (even using sudo):
+```
+could not create leading directories of '/root/.npm/_cacache/tmp/git-clone-57fb2ba2 permission denied`
+```
+
+### How much XRP do I need in my wallet used for a Codius host?
+36+ XRP is required:
+* 20 as base reserve (required for wallet activation)
+* 10 escrowed in paymentChannelCreate tx
+* 5 added to reserve to allow paymentChannel walelt functionality (now 25 in reserves)
+* 1 XRP to facilitate the tx fees burned during these initial transactions.
+
+If less than required XRP is in wallet, you will likely see this error on your host:
+```
+ilp-plugin-xrp-asym-client Error creating the payment channel: tecUNFUNDED One of _ADD, _OFFER, or _SEND. Deprecated. +0ms
+```
+* To rectify, add funds to your wallet and restart moneyd.
+
 ### How do I list pods (contracts) running on my host?
-* Enter the command `systemctl list`
+* Enter the command `hyperctl list`
 ```
 [root@host1 ~]# hyperctl list
 POD ID              POD Name            VM name             Status
 
 < I have no pods running but details would appear here. Will update this FAQ once I have a better example >
 [root@host1 ~]#
+```
+
+### Can I run multiple instances of Codius from one wallet?
+Yes! 
+* Add a unique name to your `.moneyd.json` in the `uplinks.xrp.options.name` for each instance.
+
+More info and actual documentation found below: 
+* https://github.com/interledgerjs/moneyd#multiple-instances
+
+### What decides if a contract (pod) is uploaded to my host? Is it random?
+* If `--host` is specified during upload, a specific host can be chosen;
+* If `--host` is left out / blank, a random host is chosen from the list of peers.
+```
+codius upload /tmp/example-manifest.json --host https://host1.codius.live --duration 200
 ```
