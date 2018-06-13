@@ -16,6 +16,14 @@ Add brief log output if it is relevant.
 * In its own bullet point.
 * Try to include pertinent but brief log messages in the header to help others find the issue.
 
+### Should I run the setup as root user?
+Yes!
+* Log in as root for entire setup process (hyper/moneyd/codiusd).
+* Failure to do so will cause errors like the following (even using sudo):
+```
+could not create leading directories of '/root/.npm/_cacache/tmp/git-clone-57fb2ba2 permission denied`
+```
+
 ### How much XRP do I need in my wallet used for a Codius host?
 36+ XRP is required:
 * 20 as base reserve (required for wallet activation)
