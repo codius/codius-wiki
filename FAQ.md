@@ -17,6 +17,7 @@ Add brief log output if it is relevant.
 * Try to include pertinent but brief log messages in the header to help others find the issue.
 
 ### How do I list pods (contracts) running on my host?
+* Enter the command `systemctl list`
 ```
 [root@host1 ~]# hyperctl list
 POD ID              POD Name            VM name             Status
@@ -24,4 +25,3 @@ POD ID              POD Name            VM name             Status
 < I have no pods running but details would appear here. Will update this FAQ once I have a better example >
 [root@host1 ~]#
 ```
-* Enter the command `systemctl list`
