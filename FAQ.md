@@ -19,7 +19,7 @@ Add brief log output if it is relevant.
 ### Should I run the setup as root user?
 Yes!
 * Log in as root for entire setup process (hyper/moneyd/codiusd).
-* Failure to do so will cause errors like:
+* Failure to do so will cause errors like the following (even using sudo):
 ```
 could not create leading directories of '/root/.npm/_cacache/tmp/git-clone-57fb2ba2 permission denied`
 ```
