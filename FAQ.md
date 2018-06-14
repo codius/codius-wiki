@@ -52,7 +52,7 @@ Yes!
 moneyd xrp:configure --advanced
 ```
 * If running on a machine already setup with moneyd, you'll have to delete your `.moneyd.json` file first.
-* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup' to remove old paymentChannel
+* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels
 * Tutorial coming soon.
 
 More info and actual documentation found below: 
