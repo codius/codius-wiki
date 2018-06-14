@@ -2,6 +2,7 @@
 - **Docs**
     - [**Tutorials**](https://github.com/codius/codiusd/wiki/Tutorials)
     - [**FAQ**](https://github.com/codius/codiusd/wiki/FAQ)
+    = [**Troubleshooting**](https://github.com/codius/codiusd/wiki/Troubleshooting)
 - [**White paper**](https://github.com/codius/codiusd/wiki/Smart-Oracles:-A-Simple,-Powerful-Approach-to-Smart-Contracts)
     - [**Overview**](https://github.com/codius/codiusd/wiki/Smart-Oracles:-A-Simple,-Powerful-Approach-to-Smart-Contracts#overview)
     - [**Definitions**](https://github.com/codius/codiusd/wiki/Smart-Oracles:-A-Simple,-Powerful-Approach-to-Smart-Contracts#definitions)
