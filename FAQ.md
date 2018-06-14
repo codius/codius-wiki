@@ -47,10 +47,17 @@ lg6gjhhh2b3if2tzpbms6cr3hdmh7dixa2v4an6pz4tdxdmqtjpa   lg6gjhhh2b3if2tzpbms6cr3h
 
 ### Can I run multiple instances of Codius from one wallet?
 Yes! 
-* Add a unique name to your `.moneyd.json` in the `uplinks.xrp.options.name` for each instance.
+* Add a unique name to your moneyd configuration using the below function:
+```
+moneyd xrp:configure --advanced
+```
+* If running on a machine already setup with moneyd, you'll have to delete your `.moneyd.json` file first.
+* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels
+* Tutorial coming soon.
 
 More info and actual documentation found below: 
 * https://github.com/interledgerjs/moneyd#multiple-instances
+* https://github.com/interledgerjs/moneyd#clean-up-channels
 
 ### What decides if a contract (pod) is uploaded to my host? Is it random?
 * If `--host` is specified during upload, a specific host can be chosen;
