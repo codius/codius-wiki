@@ -50,7 +50,9 @@ moneyd xrp:configure --advanced
 ```
 * If running on a machine already setup with moneyd, you'll have to delete your `.moneyd.json` file first.
 * If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels
-* Tutorial coming soon.
+
+Tutorial:
+* https://xrpcommunity.blog/single-wallet-multiple-moneyd-instances/
 
 More info and actual documentation found below: 
 * https://github.com/interledgerjs/moneyd#multiple-instances
