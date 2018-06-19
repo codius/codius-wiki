@@ -35,6 +35,26 @@ or any problems when sending payments.**
 In version 1.1.1 on moneyd-uplink-xrp, this error should no long occur.  You
 can run `npm upgrade -g moneyd-uplink-xrp` to install this patch.
 
+## Code: F00, name: NotAcceptedError, data: Incorrect token for account
+
+```
+2018-06-19T18:46:50.893Z ilp-plugin-btp debug processing btp packet {"type":2,"requestId":2269582638,"data":{"code":"F00","name":"NotAcceptedError","triggeredAt":"2018-06-19T18:46:52.103Z","data":"incorrect token for account. account=c8 token=6d55aa9bde89d15eb2f79f83c2911a8573114d21e4692e33ca2fb326b61ff5e2","protocolData":[]}}
+2018-06-19T18:46:50.894Z ilp-plugin-btp debug received BTP packet (TYPE_ERROR, RequestId: 2269582638): {"code":"F00","name":"NotAcceptedError","triggeredAt":"2018-06-19T18:46:52.103Z","data":"incorrect token for account. account=c8 token=6d55aa9bde89d15eb2f79f83c2911a8573114d21e4692e33ca2fb326b61ff5e2","protocolData":[]}
+(node:17462) UnhandledPromiseRejectionWarning: Error: {"code":"F00","name":"NotAcceptedError","triggeredAt":"2018-06-19T18:46:52.103Z","data":"incorrect token for account. account=c8 token=6d55aa9bde89d15eb2f79f83c2911a8573114d21e4692e33ca2fb326b61ff5e2","protocolData":[]}
+```
+
+#### Problem
+
+The automatically generated token that your account uses does not match the token
+that the connector associates with your account. This could mean that the `name`
+you're using is already taken, or it might just mean you broke your configuration
+by accident when changing it.
+
+#### Solution
+
+You can solve this by making sure you have a freshly created channel with a unique
+`name`. Follow [Creating a New Channel with Moneyd](#creating-a-new-channel-with-moneyd).
+
 ## Code: F02, message: failed to send packet: no clients connected
 
 ```
@@ -59,10 +79,20 @@ new channel to be created, you'll encounter this error.
 #### Solution
 
 First, try restarting moneyd. This will fix the error in some situations, but
-oftentimes you need to do a harder reset:
+oftentimes you need to do a harder reset. Follow
+[Creating a New Channel with Moneyd](#creating-a-new-channel-with-moneyd).
+
+This should be sufficient to fix this problem, and most other moneyd issues. It
+works by wiping your channels and recreating them. This operation is free,
+aside from the negligible network fees.
+
+## Creating a New Channel with Moneyd
+
+#### Part 1: Clean up channels
 
 - Run `moneyd xrp:cleanup`.
 - Mark all of your channels for deletion by hitting `a`.
+  - If you don't have any channels, skip to [Part 2: Create New Channels](#part-2-create-new-channels)
 - Confirm their deletion by hitting `<enter>`.
 - Run `moneyd xrp:info`. You'll see that your channels expire in an hour.
 - Wait one hour.
@@ -70,12 +100,11 @@ oftentimes you need to do a harder reset:
 - Run `moneyd xrp:cleanup`.
 - Mark all channels for deletion with `a`.
 - Confirm deletion by hitting `<enter>`.
+
+#### Part 2: Create New channels
+
 - On every machine using moneyd with that XRP account, back up your `.moneyd.json`.
 - On every machine using moneyd with that XRP account, run `moneyd xrp:configure --advanced`
 - Put your secret back in.
 - When you're prompted for `name`, give a unique value using alphanumeric characters.
 - Now start moneyd.
-
-This should be sufficient to fix this problem, and most other moneyd issues. It
-works by wiping your channels and recreating them. This operation is free,
-aside from the negligible network fees.
