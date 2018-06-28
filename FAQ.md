@@ -43,9 +43,27 @@ ilp-plugin-xrp-asym-client Error creating the payment channel: tecUNFUNDED One o
 * To rectify, add funds to your wallet and restart moneyd.
 
 ### Can I run multiple instances of Codius from one wallet?
-Yes! 
-* When you configure moneyd, you will be automatically assigned a random 32-byte name to your paymentChannel
-* **Note:** This requires [moneyd-uplink-xrp](https://github.com/interledgerjs/moneyd-uplink-xrp) v1.1.2. If you don't have this version, configure it via advanced mode. The tutorial for this can be found [here](https://github.com/interledgerjs/moneyd#multiple-instances)
+Yes!
+Check which version of [moneyd-uplink-xrp](https://github.com/interledgerjs/moneyd-uplink-xrp) you are using with the following command:
+```
+npm list -g | grep moneyd-uplink-xrp
+```
+#### If using v1.1.2 and later versions
+* When you configure moneyd, you will be automatically assigned a random 32-byte name to your paymentChannel.
+* You do not need to follow the steps below.
+
+#### If using v1.1.1 and earlier versions
+* Add a unique name to your moneyd configuration using the below function:
+```
+moneyd xrp:configure --advanced
+```
+* If running on a machine already setup with moneyd, you'll have to delete your `.moneyd.json` file first.
+* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels.
+* Tutorial coming soon
+
+  More info and actual documentation found below: 
+* https://github.com/interledgerjs/moneyd#multiple-instances
+* https://github.com/interledgerjs/moneyd#clean-up-channels
 ## Codiusd FAQs
 
 ### Should I run the setup as root user?
