@@ -58,12 +58,13 @@ npm list -g | grep moneyd-uplink-xrp
 moneyd xrp:configure --advanced
 ```
 * If running on a machine already setup with moneyd, you'll have to delete your `.moneyd.json` file first.
-* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels.
-* Tutorial coming soon
+* If running on a machine already setup with moneyd, you'll need to run a `moneyd xrp:cleanup` to remove old paymentChannels
+* Tutorial coming soon.
 
-  More info and actual documentation found below: 
+More info and actual documentation found below: 
 * https://github.com/interledgerjs/moneyd#multiple-instances
 * https://github.com/interledgerjs/moneyd#clean-up-channels
+
 ## Codiusd FAQs
 
 ### Should I run the setup as root user?
