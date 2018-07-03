@@ -86,6 +86,31 @@ This should be sufficient to fix this problem, and most other moneyd issues. It
 works by wiping your channels and recreating them. This operation is free,
 aside from the negligible network fees.
 
+## Error: connect ECONNREFUSED 127.0.0.1:7768
+
+```
+2018-06-11T00:19:47.174Z ilp-ws-reconnect debug websocket disconnected with Error: connect ECONNREFUSED 127.0.0.1:7768; reconnect in 5000
+```
+
+#### Problem
+
+7768 is the port that moneyd is ran on. When you get this error, it means that codiusd is unable to connect to moneyd.
+
+Moneyd could be failing for a number of reasons, but some common ones are not enough XRP in your wallet or your ILP connector is having some issues.
+
+#### Solution 
+
+Check if moneyd is running by entering `systemctl status moneyd-xrp`.
+
+If it is running, you can stop is start again in debug mode with these commands:
+
+```
+systemctl stop moneyd-xrp
+DEBUG=* moneyd xrp:start
+```
+
+You can get more in depth errors via debug mode that may be able to help fix your issue.
+
 ## Creating a New Channel with Moneyd
 
 #### Part 1: Clean up channels
