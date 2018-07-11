@@ -10,6 +10,12 @@ If you encounter an error and do not have a solution to it yet, feel free to
 make a pull request adding it to this list, and a codius contributor will add
 the solution.
 
+- [Route Control Message Was Rejected](#route-control-message-was-rejected)
+- [Code: F00, name: NotAcceptedError, data: Incorrect token for account](#code-f00-name-notacceptederror-data-incorrect-token-for-account) 
+- [Code: F02, message: failed to send packet: no clients connected](#code-f02-message-failed-to-send-packet-no-clients-connected)
+- [Error: conect ECONNREFUSED 127.0.0.1:7768](#error-connect-econnrefused-1270017768)
+- [Creating a New Channel with Moneyd](#creating-a-new-channel-with-moneyd)
+
 ## Route Control Message Was Rejected
 
 ```
