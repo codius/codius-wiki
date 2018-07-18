@@ -335,7 +335,7 @@ The Codius implementation uses Google’s Native Client to sandbox untrusted cod
 
 Codius and smart oracles in general open up new possibilities for developers, entrepreneurs, and enterprising legal and financial professionals. Agreements that previously required lengthy legal contracts can be translated into code and run automatically by smart oracles. Smart contracts hold the potential to empower people to build a fairer, more affordable and more efficient legal system and smart oracles are one of the simplest ways to realize that dream.
 
-Want to get involved? Join the community! Visit [www.codius.org](http://www.codius.org)
+Want to get involved? Join the community! Visit [codius.org](https://codius.org/)
 
 # Acknowledgements
 
