@@ -34,14 +34,18 @@ ls
 cp -a "../project/." .
 git remote remove origin
 echo "remote removed"
-git remote add origin "git@github.com:codius/codiusd.wiki.git"
+git remote add codiusd "git@github.com:codius/codiusd.wiki.git"
+git remote add codius "git@github.com:codius/codius.wiki.git"
+git remote add codiuswiki "git@github.com:codius/codius-wiki.wiki.git"
 echo "added new remote"
 # stage any changes and new files
 git add -A
 # now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
 git commit --allow-empty -m "Deploy to GitHub pages [ci skip]"
 # and push, but send any output to /dev/null to hide anything sensitive
-git push --force --quiet origin master
+git push --quiet codiusd master
+git push --quiet codius master
+git push --quiet codiuswiki master
 # go back to where we started and remove the gh-pages git repo we made and used
 # for deployment
 cd ..
