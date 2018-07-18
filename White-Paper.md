@@ -254,7 +254,7 @@ There are several guarantees that a smart contract could aim to provide, includi
 
 Our proposal for smart oracles does not mandate a specific algorithm to be used for fault tolerance, meaning the level of fault tolerance depends entirely on the contract.
 
-For our analysis we assume an example contract using a threshold signature scheme where *t* is the threshold and *n* is the total number of contract hosts. The threshold *t *must be greater than one and less than *n*. To create a signature *t+1* signers are required. We assume that all requests to the contract hosts are initiated by some client. We assume that each client wants its own request to succeed.
+For our analysis we assume an example contract using a threshold signature scheme where *t* is the threshold and *n* is the total number of contract hosts. The threshold *t* must be greater than one and less than *n*. To create a signature *t+1* signers are required. We assume that all requests to the contract hosts are initiated by some client. We assume that each client wants its own request to succeed.
 
 Such a contract would provide validity guarantees for up to *t* faults, availability guarantees for up to (*n - t) - 1* faults and no fault tolerance for confidentiality guarantees.
 
