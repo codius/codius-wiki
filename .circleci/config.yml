@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build-job:
+    docker:
+      - image: circleci/node:10 
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run:
+          name: Deploy Wiki 
+          command: ./scripts/deploy-wiki.sh
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build-job:
+          filters:
+            branches:
+              only: master
