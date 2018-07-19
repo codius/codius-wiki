@@ -1,1 +1,0 @@
-Want to contribute? Open a pull request [here!](https://github.com/codius/codius-wiki)
