@@ -135,6 +135,7 @@ You can get more in depth errors via debug mode that may be able to help fix you
 #### Part 2: Create New channels
 
 - On every machine using moneyd with that XRP account, back up your `.moneyd.json`.
+- On every machine using moneyd with that XRP account, confirm backup and delete '.moneyd.json'.
 - On every machine using moneyd with that XRP account, run `moneyd xrp:configure --advanced`
 - Put your secret back in.
 - When you're prompted for `name`, give a unique value using alphanumeric characters.
