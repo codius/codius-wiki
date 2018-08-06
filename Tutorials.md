@@ -1,6 +1,6 @@
 # Tutorials
 
-* [Creating and Running a Codius Host](https://medium.com/codius/how-to-run-your-own-codius-host-42e13afe1fb2)
+* [Creating and Running a Codius Host](https://github.com/codius/codiusd/wiki/HostTutorial)
 * [Uploading Applications to a Codius Host](https://medium.com/codius/running-a-simple-react-app-on-the-codius-smart-contract-platform-7ddefce8cb06)
 
 Additional tutorials may be found in the [Community Resources section](https://github.com/codius/codius-wiki/wiki/Community-Resources).
