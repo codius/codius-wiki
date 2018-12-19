@@ -38,83 +38,39 @@ Please make sure this command returns the correct hostname as we will be using i
 
 [Codius](https://codius.org/) is an open-source decentralized hosting plaform, built with [Interledger](https://interledger.org/). With it, users can run software on servers anywhere in the world and pay for it using any currency. This tutorial will teach you how to create your own Codius host and start earning for hosting other developers' code in XRP.
 
-A Codius host is comprised of three parts: [hyperd](https://github.com/hyperhq/hyperd), [moneyd](https://github.com/interledgerjs/moneyd), and [codiusd](https://github.com/coilhq/codiusd). Hyperd handles virtualization, Moneyd allows for Interledger payments, and Codiusd exposes endpoints for uploaders to send their code to the host.
-
 A Codius Host is comprised of three main components:
 
-- Hyperd — Handles virtualization and hardware isolation of code
-- Moneyd — Allows the sending and receiving of payments on Interledger
-- Codiusd — Exposes endpoints that allow developers to upload code to the host and launch pods for them.
+- [Hyperd](https://github.com/hyperhq/hyperd) allows the host to run uploaded code in a hardware-isolated [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/), which then allocates [containers](https://www.docker.com/what-container) for uploaded code when it is called.
+- [Moneyd](https://github.com/interledgerjs/moneyd) is a daemon that allows a host to send & receive payments over [Interledger](https://interledger.org/). In this setup it will be installed and configured to make payments with XRP but plugins for [Ethereum](https://github.com/interledgerjs/ilp-plugin-ethereum-asym-client) and other blockchains are being worked on. Keep an eye on the [current list of uplinks](https://github.com/interledgerjs/moneyd#uplinks).
+- [Codiusd](https://github.com/coilhq/codiusd) is the server-side component of Codius, which exposes endpoints that allow users to upload code and provision containers for them. It also proxies requests to pods that it is currently hosting.
 
-## Installing Hyperd
-
-[Hyperd](https://github.com/hyperhq/hyperd) allows the host to run uploaded code in a hardware-isolated [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/), which then allocates [containers](https://www.docker.com/what-container) for uploaded code when it is called.
-
-SSH into your CentOS server and install the following packages:
-
-    yum install -y gcc-c++ make
-    curl -sSl https://codius.s3.amazonaws.com/hyper-bootstrap.sh | bash
-
-This will install all of our RPM dependencies for NodeJS and hyperd, as well as automatically forward ports from the hyperd pods. It will also launch hyperd and allow you to use the hypercli command line interface.
-
-## Installing Moneyd
-
-[Moneyd](https://github.com/interledgerjs/moneyd) is a daemon that allows a host to send & receive payments over [Interledger](https://interledger.org/). In this setup it will be installed and configured to make payments with XRP but plugins for [Ethereum](https://github.com/interledgerjs/ilp-plugin-ethereum-asym-client) and other blockchains are being worked on. Keep an eye on the [current list of uplinks](https://github.com/interledgerjs/moneyd#uplinks).
+To install these components, SSH into your CentOS server and run the following commands:
 
     curl --silent --location https://rpm.nodesource.com/setup_10.x | bash -
-    yum install -y nodejs
-    yum install -y https://codius.s3.amazonaws.com/moneyd-xrp-4.0.1-1.x86_64.rpm
+    yum-config-manager --add-repo https://codius.s3.amazonaws.com/centos/codius.repo
+    yum install --enablerepo=codius-stable codiusd
 
+This will install all of our RPM dependencies for NodeJS, hyperd, moneyd, and codiusd.
 At this point, you will need your XRP Secret ready.
 
-    moneyd xrp:configure 
+    moneyd xrp:configure
     # You will be prompted to enter your secret here
-    systemctl start moneyd-xrp
 
-You can confirm the status of the daemon with `systemctl status moneyd-xrp`
+To start `codiusd`, you can run the following command:
 
-## Installing Codiusd
-
-[Codiusd](https://github.com/coilhq/codiusd) is the server-side component of Codius, which exposes endpoints that allow users to upload code and provision containers for them. It also proxies requests to pods that it is currently hosting.
-
-    yum install -y git
-    npm install -g codiusd --unsafe-perm
-
-Finally, create a file called `codiusd.service` with the following contents in `/etc/systemd/system`:
-
-    [Unit]
-    Description=Codiusd
-    After=network.target nss-lookup.target
-    [Service]
-    ExecStart=/usr/bin/npm start
-    Environment="DEBUG=*"
-    Environment="CODIUS_PUBLIC_URI=https://codius.example.com"
-    WorkingDirectory=/usr/lib/node_modules/codiusd
-    Restart=always
-    StandardOutput=syslog
-    StandardError=syslog
-    SyslogIdentifier=codiusd
-    User=root
-    Group=root
-    [Install]
-    WantedBy=multi-user.target
-
-Then we need to edit this file to use our actual hostname.
-
-    sed -i s/codius.example.com/`uname -n`/g /etc/systemd/system/codiusd.service
-
-Alternatively you can pull the example file and save in one command:
-
-    curl -sSl https://codius.s3.amazonaws.com/codiusd.service | sed s/codius.example.com/`uname -n`/ > /etc/systemd/system/codiusd.service
-
-To start `codiusd`, you can run the following commands:
-
-    systemctl enable codiusd
+    systemctl add-wants codiusd.service moneyd-xrp
+    systemctl enable hyperd moneyd-xrp codiusd
     systemctl start codiusd
+
+It will also launch hyperd and moneyd and allow you to use the hypercli and moneyd-xrp command line interfaces.
 
 Your codiusd server will now be running on port 3000. Manifests can be uploaded via endpoints at this address.
 
-You can check on the status of the server with the command `systemctl status codiusd`
+You can check the status of the server and component daemons with:
+
+    systemctl status hyperd
+    systemctl status moneyd-xrp
+    systemctl status codiusd
 
 # Domain Setup
 
