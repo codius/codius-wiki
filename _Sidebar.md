@@ -1,9 +1,4 @@
 - [**Home**](https://github.com/codius/codius-wiki/wiki/)
-- **Docs**
-    - [**Tutorials**](https://github.com/codius/codius-wiki/wiki/Tutorials)
-    - [**FAQ**](https://github.com/codius/codius-wiki/wiki/FAQ)
-    - [**Troubleshooting**](https://github.com/codius/codius-wiki/wiki/Troubleshooting)
-    - [**Community Resources**](https://github.com/codius/codius-wiki/wiki/Community-Resources)
 - [**White paper**](https://github.com/codius/codius-wiki/wiki/White-Paper)
     - [**Overview**](https://github.com/codius/codius-wiki/wiki/White-Paper#overview)
     - [**Definitions**](https://github.com/codius/codius-wiki/wiki/White-Paper#definitions)
