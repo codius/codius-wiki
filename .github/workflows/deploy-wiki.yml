@@ -1,0 +1,28 @@
+# https://github.community/t/how-to-updade-repo-wiki-from-github-actions/121151
+
+name: Deploy wiki
+
+on:
+  push:
+    branches:
+    - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkout wiki code
+        uses: actions/checkout@v2
+        with:
+          repository: ${{github.repository}}.wiki
+          path: wiki
+      - name: Push to wiki
+        working-directory: ./wiki
+        run: |
+          cp ../*.md .
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Add changes" && git push
